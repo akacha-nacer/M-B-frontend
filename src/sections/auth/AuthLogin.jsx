@@ -17,11 +17,12 @@ import { emailSchema, passwordSchema } from 'utils/validationSchema';
 
 // assets
 import DarkLogo from 'assets/images/logo-dark.svg';
-
+import authService from "../../services/authService";
 // ==============================|| AUTH LOGIN FORM ||============================== //
 
 export default function AuthLoginForm({ className, link }) {
   const [showPassword, setShowPassword] = useState(false);
+
 
   const {
     register,
@@ -34,8 +35,10 @@ export default function AuthLoginForm({ className, link }) {
     setShowPassword((prevState) => !prevState);
   };
 
-  const onSubmit = () => {
-    reset();
+  const onSubmit = (data) => {
+    const {email,password}=data;
+    console.log(email,password);
+    authService.login(email,password);
   };
 
   return (
@@ -62,7 +65,7 @@ export default function AuthLoginForm({ className, link }) {
             <Form.Control
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
-              {...register('password', passwordSchema)}
+              {...register('password')}
               isInvalid={!!errors.password}
               className={className && 'bg-transparent border-white text-white border-opacity-25 '}
             />
