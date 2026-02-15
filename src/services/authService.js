@@ -3,6 +3,7 @@ import {API_ENDPOINTS,STORAGE_KEYS} from "../utils/const";
 
 const authService = {
 
+
     login: async (email,password) =>{
         try {
             const response = await apiClient.post(API_ENDPOINTS.AUTH.LOGIN, {
@@ -11,14 +12,14 @@ const authService = {
             });
 
             const {
-                accessToken,
-                refreshToken,
-                user,
+                access_token,
+                refresh_token,
+                mfaEnabled,
             } = response.data ;
 
-            localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, accessToken);
-            localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN,refreshToken);
-            localStorage.setItem(STORAGE_KEYS.USER,JSON.stringify(user));
+            localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, access_token);
+            localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN,refresh_token);
+            // localStorage.setItem(STORAGE_KEYS.USER,JSON.stringify(user));
 
             return response.data;
 
@@ -54,7 +55,6 @@ const authService = {
             localStorage.removeItem(STORAGE_KEYS.USER);
             console.log('logged out locally');
 
-            window.location.href('/login');
         }
     },
 

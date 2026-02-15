@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-// react-bootstrap
+
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -10,20 +10,24 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
 
-// third-party
+
 import { useForm } from 'react-hook-form';
 
-// project-imports
+
 import MainCard from 'components/MainCard';
 import { confirmPasswordSchema, emailSchema, firstNameSchema, lastNameSchema, passwordSchema } from 'utils/validationSchema';
 
-// assets
+
 import DarkLogo from 'assets/images/logo-dark.svg';
+import {Link} from "react-router-dom";
+import AuthService from "../../services/authService";
+import {useNavigate} from "react-router-dom";
 
 // ==============================|| AUTH REGISTER FORM ||============================== //
 
 export default function AuthRegisterForm({ className, link }) {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -43,9 +47,18 @@ export default function AuthRegisterForm({ className, link }) {
         type: 'manual',
         message: 'Both Password must be match!'
       });
-    } else {
+      return;
+    }
       clearErrors('confirmPassword');
-      reset();
+
+    try {
+      const {confirmPassword, ...registerData} = data;
+      AuthService.register(registerData).then(r => {
+        navigate('/login');
+      });
+
+    }catch (error){
+
     }
   };
 
@@ -64,7 +77,7 @@ export default function AuthRegisterForm({ className, link }) {
               <Form.Control
                 type="text"
                 placeholder="First Name"
-                {...register('firstName', firstNameSchema)}
+                {...register('firstname', firstNameSchema)}
                 isInvalid={!!errors.firstName}
                 className={className && 'bg-transparent border-white text-white border-opacity-25 '}
               />
@@ -76,7 +89,7 @@ export default function AuthRegisterForm({ className, link }) {
               <Form.Control
                 type="text"
                 placeholder="Last Name"
-                {...register('lastName', lastNameSchema)}
+                {...register('lastname', lastNameSchema)}
                 isInvalid={!!errors.email}
                 className={className && 'bg-transparent border-white text-white border-opacity-25 '}
               />
@@ -136,9 +149,9 @@ export default function AuthRegisterForm({ className, link }) {
         </div>
         <Stack direction="horizontal" className="justify-content-between align-items-end mt-4">
           <h6 className={`f-w-500 mb-0 ${className}`}>Already have an Account?</h6>
-          <a href={link} className="link-primary">
+          <Link to="/login" className="link-primary">
             Login
-          </a>
+          </Link>
         </Stack>
       </Form>
     </MainCard>

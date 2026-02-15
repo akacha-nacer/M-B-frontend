@@ -10,19 +10,14 @@ const DefaultPages = Loadable(lazy(() => import('views/navigation/dashboard/Defa
 // ==============================|| NAVIGATION ROUTING ||============================== //
 
 const NavigationRoutes = {
-  path: '/',
-  children: [
-    {
-      path: '/',
+      path: '/dashboard',
       element: <DashboardLayout />,
       children: [
         {
-          path: '/',
+          index: true,
           element: <DefaultPages />
         }
       ]
-    }
-  ]
 };
 
 export default NavigationRoutes;

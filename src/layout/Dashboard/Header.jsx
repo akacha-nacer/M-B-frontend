@@ -21,6 +21,11 @@ import Img3 from 'assets/images/user/avatar-3.png';
 import Img4 from 'assets/images/user/avatar-4.png';
 import Img5 from 'assets/images/user/avatar-5.png';
 
+import AuthService from "../../services/authService";
+import authService from "../../services/authService"; AuthService
+import {useNavigate} from "react-router-dom";
+
+
 const notifications = [
   {
     id: 1,
@@ -70,6 +75,15 @@ const notifications = [
 export default function Header() {
   const { menuMaster } = useGetMenuMaster();
   const drawerOpen = menuMaster?.isDashboardDrawerOpened;
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+      authService.logout().then(r => {
+        navigate('/login');
+      });
+
+
+  }
 
   return (
     <header className="pc-header">
@@ -201,7 +215,7 @@ export default function Header() {
                       Change Password
                     </Dropdown.Item>
                     <div className="d-grid my-2">
-                      <Button>
+                      <Button onClick={handleLogout}>
                         <i className="ph ph-sign-out align-middle me-2" />
                         Logout
                       </Button>

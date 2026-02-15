@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import {createBrowserRouter, Navigate} from 'react-router-dom';
 
 // project-imports
 import PagesRoutes from './PagesRoutes';
@@ -8,11 +8,16 @@ import FormsRoutes from './FormsRoutes';
 import TablesRoutes from './TablesRoutes';
 import ChartMapRoutes from './ChartMapRoutes';
 import OtherRoutes from './OtherRoutes';
+import AuthRoutes from "./AuthRoutes";
 
 // ==============================|| ROUTING RENDER ||============================== //
 
 const router = createBrowserRouter(
-  [NavigationRoutes, ComponentsRoutes, FormsRoutes, TablesRoutes, ChartMapRoutes, PagesRoutes, OtherRoutes],
+  [{
+      path: '/',
+      element: <Navigate to={"/login"} replace />
+  },
+      PagesRoutes, NavigationRoutes, ComponentsRoutes, FormsRoutes, TablesRoutes, ChartMapRoutes, OtherRoutes],
   {
     basename: import.meta.env.VITE_APP_BASE_NAME
   }

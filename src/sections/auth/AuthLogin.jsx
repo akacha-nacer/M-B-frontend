@@ -1,28 +1,29 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-// react-bootstrap
+
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Stack from 'react-bootstrap/Stack';
 
-// third-party
-import { useForm } from 'react-hook-form';
 
-// project-imports
+import { useForm } from 'react-hook-form';
+import { useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
+
 import MainCard from 'components/MainCard';
 import { emailSchema, passwordSchema } from 'utils/validationSchema';
 
-// assets
+
 import DarkLogo from 'assets/images/logo-dark.svg';
 import authService from "../../services/authService";
 // ==============================|| AUTH LOGIN FORM ||============================== //
 
 export default function AuthLoginForm({ className, link }) {
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
 
   const {
     register,
@@ -37,8 +38,13 @@ export default function AuthLoginForm({ className, link }) {
 
   const onSubmit = (data) => {
     const {email,password}=data;
-    console.log(email,password);
-    authService.login(email,password);
+    authService.login(email, password)
+        .then(() => {
+          navigate('/dashboard');
+        })
+        .catch((error) => {
+          console.error("Login failed:", error);
+        });
   };
 
   return (
@@ -85,9 +91,9 @@ export default function AuthLoginForm({ className, link }) {
               className={`input-primary ${className ? className : 'text-muted'} `}
             />
           </Form.Group>
-          <a href="#!" className={`text-secondary f-w-400 mb-0  ${className}`}>
+          <Link to="/forgotPassword" className={`text-secondary f-w-400 mb-0  ${className}`}>
             Forgot Password?
-          </a>
+          </Link>
         </Stack>
         <div className="text-center mt-4">
           <Button type="submit" className="shadow px-sm-4">
@@ -96,9 +102,9 @@ export default function AuthLoginForm({ className, link }) {
         </div>
         <Stack direction="horizontal" className="justify-content-between align-items-end mt-4">
           <h6 className={`f-w-500 mb-0 ${className}`}>Don't have an Account?</h6>
-          <a href={link} className="link-primary">
+          <Link to="/register" className="link-primary">
             Create Account
-          </a>
+          </Link>
         </Stack>
       </Form>
     </MainCard>
