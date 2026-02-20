@@ -10,6 +10,10 @@ export const API_ENDPOINTS = {
         FORGOT_PASSWORD: '/auth/forgot-password',
         VERIFY_EMAIL: '/auth/verify-email',
     },
+    USER : {
+        GET_CURRENT_USER: '/users/me',
+        CHANGE_PASSWORD : '/change-password'
+    }
 
 
 
@@ -20,6 +24,8 @@ export const STORAGE_KEYS = {
         ACCESS_TOKEN : 'access_token',
         REFRESH_TOKEN : 'refresh_token',
         USER : 'user_data',
+        REMEMBERED_PASSWORD: 'rememberedPassword',
+        REMEMBERED_EMAIL: 'rememberedEmail',
 };
 
 

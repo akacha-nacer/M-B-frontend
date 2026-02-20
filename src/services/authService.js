@@ -4,7 +4,7 @@ import {API_ENDPOINTS,STORAGE_KEYS} from "../utils/const";
 const authService = {
 
 
-    login: async (email,password) =>{
+    login: async (email,password, rememberMe = false) =>{
         try {
             const response = await apiClient.post(API_ENDPOINTS.AUTH.LOGIN, {
                 password,
@@ -14,12 +14,18 @@ const authService = {
             const {
                 access_token,
                 refresh_token,
+                user,
                 mfaEnabled,
             } = response.data ;
 
-            localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, access_token);
-            localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN,refresh_token);
-            // localStorage.setItem(STORAGE_KEYS.USER,JSON.stringify(user));
+            const storage = rememberMe ? localStorage : sessionStorage;
+
+            storage.setItem(STORAGE_KEYS.ACCESS_TOKEN, access_token);
+            storage.setItem(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
+
+            if (user) {
+                storage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
+            }
 
             return response.data;
 
@@ -53,6 +59,9 @@ const authService = {
             localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
             localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
             localStorage.removeItem(STORAGE_KEYS.USER);
+            sessionStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
+            sessionStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
+            sessionStorage.removeItem(STORAGE_KEYS.USER);
             console.log('logged out locally');
 
         }
@@ -128,34 +137,57 @@ const authService = {
         }
     },
 
+    fetchCurrentUser: async () => {
+        try {
+            const response = await apiClient.get(API_ENDPOINTS.USER.GET_CURRENT_USER);
+
+            const storage = localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN)
+                ? localStorage
+                : sessionStorage;
+
+            storage.setItem(STORAGE_KEYS.USER, JSON.stringify(response.data));
+
+            return response.data;
+
+        } catch (error) {
+            console.error('❌ Failed to fetch current user:', error);
+
+            await authService.logout();
+            throw error;
+        }
+    },
+
 
     getCurrentUser: () => {
-        const userStr = localStorage.getItem(STORAGE_KEYS.USER);
-
+        const userStr = localStorage.getItem(STORAGE_KEYS.USER) ||
+            sessionStorage.getItem(STORAGE_KEYS.USER);
         if (userStr) {
             try {
-                // Parse JSON string to object
                 return JSON.parse(userStr);
             } catch (error) {
                 console.error('❌ Error parsing user data:', error);
                 return null;
             }
         }
-
         return null;
     },
 
     isAuthenticated: () => {
-        const token = localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
-        return !!token;  // !! converts to boolean (true/false)
+        // Fixed: now checks both storages
+        return !!(localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN) ||
+            sessionStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN));
     },
 
     getAccessToken: () => {
-        return localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
+        // Fixed: now checks both storages
+        return localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN) ||
+            sessionStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
     },
 
     getRefreshToken: () => {
-        return localStorage.getItem(STORAGE_KEYS.REFRESH_TOKEN);
+        // Fixed: now checks both storages
+        return localStorage.getItem(STORAGE_KEYS.REFRESH_TOKEN) ||
+            sessionStorage.getItem(STORAGE_KEYS.REFRESH_TOKEN);
     },
 };
 

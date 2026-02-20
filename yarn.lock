@@ -1305,6 +1305,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"async@npm:~0.2.6":
+  version: 0.2.10
+  resolution: "async@npm:0.2.10"
+  checksum: 10c0/714d284dc6c3ae59f3e8b347083e32c7657ba4ffc4ff945eb152ad4fb08def27e768992fcd4d9fd3b411c6b42f1541862ac917446bf2a1acfa0f302d1001f7d2
+  languageName: node
+  linkType: hard
+
 "asynckit@npm:^0.4.0":
   version: 0.4.0
   resolution: "asynckit@npm:0.4.0"
@@ -1527,6 +1534,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clone@npm:~0.1.6":
+  version: 0.1.19
+  resolution: "clone@npm:0.1.19"
+  checksum: 10c0/593474606fc5ab34c94364bd1e8d58526f63cbc8061236b73ffafb1675174206e9d0317aab66a87159128aef082500c3bd50063da64acc2604b7af8762d92a24
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^2.0.1":
   version: 2.0.1
   resolution: "color-convert@npm:2.0.1"
@@ -1563,6 +1577,13 @@ __metadata:
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
   checksum: 10c0/c996b1cfdf95b6c90fee4dae37e332c8b6eb7d106430c17d538034c0ad9a1630cb194d2ab37293b1bdd4d779494beee7786d586a50bd9376fd6f7bcc2bd4c98f
+  languageName: node
+  linkType: hard
+
+"consolidate@npm:~0.8.0":
+  version: 0.8.0
+  resolution: "consolidate@npm:0.8.0"
+  checksum: 10c0/b84781a641862e21a9bc136826b9a4792f6c7bd89ced0cdaa424d97a01cecb8cc9d5e884cd880fef735050178473605af6d20652e1ff4ea7c7c0faba46aa8d82
   languageName: node
   linkType: hard
 
@@ -1671,6 +1692,7 @@ __metadata:
     sass: "npm:1.77.6"
     simplebar-react: "npm:3.3.0"
     swr: "npm:2.3.2"
+    views: "npm:^1.0.2"
     vite: "npm:6.0.2"
     vite-jsconfig-paths: "npm:2.0.1"
     yup: "npm:1.6.1"
@@ -2565,6 +2587,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"glob@npm:~3.1.21":
+  version: 3.1.21
+  resolution: "glob@npm:3.1.21"
+  dependencies:
+    graceful-fs: "npm:~1.2.0"
+    inherits: "npm:1"
+    minimatch: "npm:~0.2.11"
+  checksum: 10c0/ef72ef3b5613a534e9f4bd66747e924d20c8a38b621c77efa33881ec6d4223ecd98264fa971e151ee3e001e10fcf4080c6bd8e4335c87331111201d0a1763609
+  languageName: node
+  linkType: hard
+
 "globals@npm:^14.0.0":
   version: 14.0.0
   resolution: "globals@npm:14.0.0"
@@ -2600,6 +2633,13 @@ __metadata:
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
   checksum: 10c0/386d011a553e02bc594ac2ca0bd6d9e4c22d7fa8cfbfc448a6d148c59ea881b092db9dbe3547ae4b88e55f1b01f7c4a2ecc53b310c042793e63aa44cf6c257f2
+  languageName: node
+  linkType: hard
+
+"graceful-fs@npm:~1.2.0":
+  version: 1.2.3
+  resolution: "graceful-fs@npm:1.2.3"
+  checksum: 10c0/58b2c653a287a11ea2cab832672a71583e45fef295dec560a7d35b109df6b32d2e29fba82904686dd6a1c77c836e103dde3393d9921d1bae7bc49edb7685d2a2
   languageName: node
   linkType: hard
 
@@ -2733,6 +2773,13 @@ __metadata:
   version: 0.1.4
   resolution: "imurmurhash@npm:0.1.4"
   checksum: 10c0/8b51313850dd33605c6c9d3fd9638b714f4c4c40250cff658209f30d40da60f78992fb2df5dabee4acf589a6a82bbc79ad5486550754bd9ec4e3fc0d4a57d6a6
+  languageName: node
+  linkType: hard
+
+"inherits@npm:1":
+  version: 1.0.2
+  resolution: "inherits@npm:1.0.2"
+  checksum: 10c0/fae9f5d59f2f24b25e04e84cf5fc025517f39f20246044bb82f9fbfefe804d47c361e87bebad46488b61c275b2cceab17f704eb9d1e76c183b0a5c1f2bbcea97
   languageName: node
   linkType: hard
 
@@ -3246,6 +3293,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lru-cache@npm:2":
+  version: 2.7.3
+  resolution: "lru-cache@npm:2.7.3"
+  checksum: 10c0/699702a9e374fd48cb507c55ecf655409337b3f6356a78e620e64e34c675bd988377fd4e3bb1db6e05a03b10e1758ba55877ca90a01c8d7ab2bea05cc49190d8
+  languageName: node
+  linkType: hard
+
 "lru-cache@npm:^10.0.1, lru-cache@npm:^10.2.0":
   version: 10.4.3
   resolution: "lru-cache@npm:10.4.3"
@@ -3319,6 +3373,16 @@ __metadata:
   dependencies:
     brace-expansion: "npm:^2.0.1"
   checksum: 10c0/de96cf5e35bdf0eab3e2c853522f98ffbe9a36c37797778d2665231ec1f20a9447a7e567cb640901f89e4daaa95ae5d70c65a9e8aa2bb0019b6facbc3c0575ed
+  languageName: node
+  linkType: hard
+
+"minimatch@npm:~0.2.11":
+  version: 0.2.14
+  resolution: "minimatch@npm:0.2.14"
+  dependencies:
+    lru-cache: "npm:2"
+    sigmund: "npm:~1.0.0"
+  checksum: 10c0/35b27aa9421ea09729820e09db54d01daa9600f0ac48b9195dacaa6894cc797f5f44048edee8be50dc86bf50452c546f88056267fd03784d6f660d66bd05945f
   languageName: node
   linkType: hard
 
@@ -4310,6 +4374,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sigmund@npm:~1.0.0":
+  version: 1.0.1
+  resolution: "sigmund@npm:1.0.1"
+  checksum: 10c0/0cc9cf0acf4ee1e29bc324ec60b81865c30c4cf6738c6677646b101df1b1b1663759106d96de4199648e5fff3d1d2468ba06ec437cfcef16ee8ff19133fcbb9d
+  languageName: node
+  linkType: hard
+
 "signal-exit@npm:^4.0.1":
   version: 4.1.0
   resolution: "signal-exit@npm:4.1.0"
@@ -4619,6 +4690,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tea-merge@npm:~0.1.0":
+  version: 0.1.0
+  resolution: "tea-merge@npm:0.1.0"
+  dependencies:
+    tea-type: "npm:0.1.0"
+  checksum: 10c0/6c01608481b74d1e1bd4b78183fcd78b9a88baa151d5e939b6f694fb5632503f6672b3ee176cd3c717cd4e4ef8a124eaaf321bb8a095f5e71d7a99f92544856e
+  languageName: node
+  linkType: hard
+
+"tea-type@npm:0.1.0":
+  version: 0.1.0
+  resolution: "tea-type@npm:0.1.0"
+  checksum: 10c0/782d5323811359f81eb112c455ac3c0cec0981bcd669080920302f513d37b93d11515066bf317d2a27f98e2579677f359e73d73f3d77883303ad1df5fda3f82f
+  languageName: node
+  linkType: hard
+
 "thenify-all@npm:^1.0.0":
   version: 1.6.0
   resolution: "thenify-all@npm:1.6.0"
@@ -4877,6 +4964,19 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 10c0/1b8663515c0be34fa653feb724fdcce3984037c78dd4a18f68b2c8be55cc1a1084c578d5b75f158d41b5ddffc2bf5600766d1af3c19c8e329bb20af2ec6f52f4
+  languageName: node
+  linkType: hard
+
+"views@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "views@npm:1.0.2"
+  dependencies:
+    async: "npm:~0.2.6"
+    clone: "npm:~0.1.6"
+    consolidate: "npm:~0.8.0"
+    glob: "npm:~3.1.21"
+    tea-merge: "npm:~0.1.0"
+  checksum: 10c0/9419208ea98b00be92a7e6ad65284b64cdc507d066274f55fc438bcf1de7a84cca1a5f57a4e5fb283d6a618615eddf562f43a6d2507e26dad1145316296f82e3
   languageName: node
   linkType: hard
 

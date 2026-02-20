@@ -20,6 +20,7 @@ import { emailSchema, passwordSchema } from 'utils/validationSchema';
 import DarkLogo from 'assets/images/logo-dark.svg';
 import AuthLoginForm from "./AuthLogin";
 import axios from "axios";
+import Alert from "react-bootstrap/Alert";
 
 export default function ForgotPasswordForm({className,Link}){
 
@@ -29,10 +30,16 @@ export default function ForgotPasswordForm({className,Link}){
      formState: {errors,isSubmitting}
  } = useForm();
 
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
+
  const onSubmit = async(data) => {
+     setErrorMessage("");
+     setSuccessMessage("");
+
     try {
         await axios.post("http://localhost:8080/api/v1/auth/forgot-password", {email : data.email});
-        alert("If the email exists, a reset link was sent.");
+        setSuccessMessage("If the email exists, a reset link was sent.");
     }catch (error){
         console.error(error);
     }
@@ -48,6 +55,11 @@ export default function ForgotPasswordForm({className,Link}){
             </div>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <h4 className={`text-center f-w-500 mt-4 mb-3 ${className}`}>Forgot Password</h4>
+                {successMessage && (
+                    <Alert variant="success" className="mb-3">
+                        {successMessage}
+                    </Alert>
+                )}
                 <Form.Group className="mb-3" controlId="formEmail">
                     <Form.Control
                         type="email"
