@@ -11,7 +11,14 @@ const navigation = {
       title: 'Dashboard',
       type: 'item',
       icon: icons.dashboard,
-      url: '/'
+      url: '/dashboard'
+    },
+    {
+      id: 'clients',
+      title: 'Clients',
+      type: 'item',
+      icon: icons.dashboard,
+      url: '/clients'
     }
   ]
 };
